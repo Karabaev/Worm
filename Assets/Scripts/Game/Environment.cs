@@ -23,11 +23,19 @@ public class EnvironmentConntroller : MonoBehaviour
     [SerializeField] private Vector3 startBackgroundPosition;
     [SerializeField] private Transform backGroundEndingPosition;
     private Transform player;
+    private Transform leftCameraBorder;
+    private Transform rightCameraBorder;
+
     private void Start ()
     {
         CreateBackgrounds();
         CreateObstacles();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        leftCameraBorder = GameObject.FindGameObjectWithTag("LeftCameraBorder").transform;
+        rightCameraBorder = GameObject.FindGameObjectWithTag("RightCameraBorder").transform;
+        if (player == null) Debug.LogError("Не найден объект с тегом Player");
+        if(rightCameraBorder == null) Debug.LogError("Не найден объект с тегом RightCameraBorder");
+        if(leftCameraBorder == null) Debug.LogError("Не найден объект с тегом LeftCameraBorder");
     }
 	private void Update ()
     {
