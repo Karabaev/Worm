@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LeftCameraBorder
-  - RightCameraBorder
+  - Borders
+  - Obstacles
+  - TopObstaclePoints
+  - BottomObstaclePoints
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Gizmos
   - 
   - 
   - 

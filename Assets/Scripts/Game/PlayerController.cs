@@ -1,106 +1,104 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-public enum PlayerTurn
+﻿
+namespace Game
 {
-    Forward,
-    Top,
-    Down
-}
-public class PlayerController : MonoBehaviour
-{
-    [SerializeField] private List<GameObject> segments = new List<GameObject>();
-    [SerializeField] private GameData gameData;
-    [SerializeField] private List<Vector3> turnRotations;
-    [SerializeField] private PlayerTurn currentTurn;
-    private void Awake()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.Events;
+    using UnityEngine.SceneManagement;
+    /// <summary>
+    /// Направления перемещения персонажа
+    /// </summary>
+    public enum PlayerTurn
     {
-        for (int i = 0; i < segments.Count; i++)
+        Forward,
+        Top,
+        Down
+    }
+    /// <summary>
+    /// Класс управления персонажом
+    /// </summary>
+    public class PlayerController : MonoBehaviour
+    {
+        [SerializeField] private GameData gameData;
+        [SerializeField] private List<Vector3> turnRotations;
+        [SerializeField] private PlayerTurn currentTurn;
+        [SerializeField] private bool IsDead = false;
+        [SerializeField] private string cameraBordersTag, obstaclesTag;
+        public UnityEvent OnDead;
+
+        private void Start()
         {
-            WormSegment segment = segments[i].GetComponent<WormSegment>();
-            try
+            this.currentTurn = PlayerTurn.Forward;
+            this.TurnPlayer();
+        }
+
+        private void Update()
+        {
+            if (!IsDead)
             {
-                segment.Next = segments[i - 1];
-                
+                this.ChangeTurn();
+                this.Move();
             }
-            catch (ArgumentOutOfRangeException)
+        }
+
+        private void Move()
+        {
+            this.transform.localPosition += this.transform.right * gameData.GameSpeed * Time.deltaTime;
+        }
+
+        private void ChangeTurn()
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                segment.Next = null;
+                if (this.CurrentTurn == PlayerTurn.Forward) this.CurrentTurn = PlayerTurn.Down;
+                this.CurrentTurn = this.CurrentTurn == PlayerTurn.Down ? PlayerTurn.Top : PlayerTurn.Down;
             }
-            try
+        }
+
+        private void TurnPlayer()
+        {
+            switch (this.currentTurn)
             {
-                segment.Prev = segments[i + 1];
+                case PlayerTurn.Forward:
+                    this.transform.rotation = Quaternion.Euler(turnRotations[0]);
+                    break;
+                case PlayerTurn.Top:
+                    this.transform.rotation = Quaternion.Euler(turnRotations[1]);
+                    break;
+                case PlayerTurn.Down:
+                    this.transform.rotation = Quaternion.Euler(turnRotations[2]);
+                    break;
+                default:
+                    break;
             }
-            catch (ArgumentOutOfRangeException)
+        }
+        private PlayerTurn CurrentTurn
+        {
+            get
             {
-                segment.Prev = null;
+                return this.currentTurn;
+            }
+            set
+            {
+                this.currentTurn = value;
+                this.TurnPlayer();
             }
         }
-        currentTurn = PlayerTurn.Forward;
-        TurnPlayer();
-    }
-
-
-    private void Update()
-    {
-        Move();
-        ChangeTurn();
-
-    }
-    private void Move()
-    {
-        segments[0].transform.localPosition += segments[0].transform.right * gameData.GameSpeed * Time.deltaTime;
-    }
-
-    private void ChangeSegmentPosition(GameObject segment,  Vector3 newPos)
-    {
-        segment.transform.position = newPos;
-    }
-
-
-
-    private void ChangeTurn()
-    {
-        if (Input.GetMouseButtonDown(0))
+        private void Dead()
         {
-            if (CurrentTurn == PlayerTurn.Forward) CurrentTurn = PlayerTurn.Down;
-            CurrentTurn = CurrentTurn == PlayerTurn.Down ? PlayerTurn.Top : PlayerTurn.Down;
+            IsDead = true;
+            SceneManager.LoadScene(0);
         }
-    }
-    private void TurnPlayer()
-    {
-        switch (currentTurn)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            case PlayerTurn.Forward:
-                segments[0].transform.rotation = Quaternion.Euler(turnRotations[0]);
-                break;
-            case PlayerTurn.Top:
-                segments[0].transform.rotation = Quaternion.Euler(turnRotations[1]);
-                break;
-            case PlayerTurn.Down:
-                segments[0].transform.rotation = Quaternion.Euler(turnRotations[2]);
-                break;
-            default:
-                break;
+            if(other.collider.tag == this.cameraBordersTag || other.collider.tag == this.obstaclesTag)
+            {
+                this.Dead();
+            }
         }
-
-    }
-    private PlayerTurn CurrentTurn
-    {
-        get
-        {
-            return currentTurn;
-        }
-        set
-        {
-            currentTurn = value;
-            TurnPlayer();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
     }
 }
+
+
+
