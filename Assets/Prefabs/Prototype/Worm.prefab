@@ -26,7 +26,7 @@ GameObject:
   m_Layer: 0
   m_Name: Worm
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698829712002874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.874, y: -0.31, z: 0.9684955}
+  m_LocalPosition: {x: -1.77, y: -0.33, z: 0.9684955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -199,8 +199,17 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 320}
   currentTurn: 0
   IsDead: 0
+  cameraBordersTag: Borders
+  obstaclesTag: Obstacles
+  backgroundBorderTag: BackgroundBorder
   OnDead:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnBackgroundReplace:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  env: {fileID: 0}

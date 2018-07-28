@@ -8,6 +8,8 @@ TagManager:
   - Obstacles
   - TopObstaclePoints
   - BottomObstaclePoints
+  - BackgroundBorder
+  - Environment
   layers:
   - Default
   - TransparentFX

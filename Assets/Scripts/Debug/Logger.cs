@@ -19,12 +19,14 @@
     public static class Logger
     {
         private static string logFileName = "Debug/Debug.log";
+
         private static void Log(LogTypes type, GameObject sender, string log)
         {
-            log = string.Format("{0} Объект: {1}", log, sender.name);
+            log = string.Format("{0} Объект: {1}", log, sender);
             Display(type, log);
             WriteToFile(type, log);
         }
+
         private static void Log(LogTypes type, GameObject sender, string format, params object[] args)
         {
             string log = string.Format(format, args);
@@ -32,17 +34,28 @@
             Display(type, log);
             WriteToFile(type, log);
         }
+
         public static void LogInfo(GameObject sender, string log)
         {
             Log(LogTypes.Info, sender, log);
         }
+
         public static void LogWarning(GameObject sender, string log)
         {
             Log(LogTypes.Warning, sender, log);
         }
+
         public static void LogError(GameObject sender, string log)
         {
             Log(LogTypes.Error, sender, log);
+        }
+
+        public static void CheckReference(GameObject sender, object obj)
+        {
+            if(obj == null)
+            {
+                LogError(sender, "Ссылка на объект не инициализирована.");
+            }
         }
 
         private static void Display(LogTypes type, string log)

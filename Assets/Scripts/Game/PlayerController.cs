@@ -24,9 +24,9 @@ namespace Game
         [SerializeField] private List<Vector3> turnRotations;
         [SerializeField] private PlayerTurn currentTurn;
         [SerializeField] private bool IsDead = false;
-        [SerializeField] private string cameraBordersTag, obstaclesTag;
+        [SerializeField] private string cameraBordersTag = string.Empty, obstaclesTag = string.Empty, backgroundBorderTag = string.Empty;
         public UnityEvent OnDead;
-
+        public UnityEvent OnBackgroundReplace;
         private void Start()
         {
             this.currentTurn = PlayerTurn.Forward;
@@ -42,11 +42,17 @@ namespace Game
             }
         }
 
+        /// <summary>
+        /// Перемещение персонажа.
+        /// </summary>
         private void Move()
         {
             this.transform.localPosition += this.transform.right * gameData.GameSpeed * Time.deltaTime;
         }
 
+        /// <summary>
+        /// Изменить угол поворота персонажа
+        /// </summary>
         private void ChangeTurn()
         {
             if (Input.GetMouseButtonDown(0))
@@ -56,6 +62,9 @@ namespace Game
             }
         }
 
+        /// <summary>
+        /// Непосредственно повернуть объект игрока
+        /// </summary>
         private void TurnPlayer()
         {
             switch (this.currentTurn)
@@ -73,6 +82,7 @@ namespace Game
                     break;
             }
         }
+
         private PlayerTurn CurrentTurn
         {
             get
@@ -85,16 +95,39 @@ namespace Game
                 this.TurnPlayer();
             }
         }
+
+        /// <summary>
+        /// Умереть
+        /// </summary>
         private void Dead()
         {
             IsDead = true;
+            OnDead.Invoke();
             SceneManager.LoadScene(0);
         }
+
+        /// <summary>
+        /// Столкновение (обычно смерть)
+        /// </summary>
+        /// <param name="other"></param>
         private void OnCollisionEnter2D(Collision2D other)
         {
             if(other.collider.tag == this.cameraBordersTag || other.collider.tag == this.obstaclesTag)
             {
                 this.Dead();
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Вхождение в триггер
+        /// </summary>
+        /// <param name="other"></param>
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.tag == backgroundBorderTag)
+            {
+                this.OnBackgroundReplace.Invoke();
             }
         }
     }

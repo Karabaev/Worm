@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 61518767629407292}
   m_Layer: 8
   m_Name: BGSpawnBorder
-  m_TagString: Untagged
+  m_TagString: BackgroundBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 4522858517344854}
   - component: {fileID: 212705557044629758}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Background prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1517,9 +1517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ddfce750d69bf48ae3559b0a1ff362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundPrefab: {fileID: 1853997875903890, guid: ed077bcba569a974390a4bdd8a5a85bf,
-    type: 2}
-  spawnPoint: {fileID: 4485699808239704}
   topObstaclePoints: []
   bottomObstaclePoints: []
   topObstaclePointsTag: TopObstaclePoints
@@ -1529,6 +1526,7 @@ MonoBehaviour:
   topObstaclesCount: 13
   bottomObstaclesCount: 13
   obstacleScale: {x: 3, y: 3, z: 0.1}
+  spawnPoint: {fileID: 4485699808239704}
 --- !u!212 &212012817721588088
 SpriteRenderer:
   m_ObjectHideFlags: 1
