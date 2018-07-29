@@ -317,7 +317,7 @@ RectTransform:
   - {fileID: 483848979}
   - {fileID: 1427580219}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -333,11 +333,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4210508827152918, guid: daa7c958a3ab718428fc9e18f86ce8ac, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.77
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 4210508827152918, guid: daa7c958a3ab718428fc9e18f86ce8ac, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.33
+      value: -1.36
       objectReference: {fileID: 0}
     - target: {fileID: 4210508827152918, guid: daa7c958a3ab718428fc9e18f86ce8ac, type: 2}
       propertyPath: m_LocalPosition.z
@@ -361,18 +361,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4210508827152918, guid: daa7c958a3ab718428fc9e18f86ce8ac, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114497962750400282, guid: daa7c958a3ab718428fc9e18f86ce8ac,
-        type: 2}
-      propertyPath: env
-      value: 
-      objectReference: {fileID: 1567357305}
-    - target: {fileID: 114497962750400282, guid: daa7c958a3ab718428fc9e18f86ce8ac,
-        type: 2}
-      propertyPath: environment
-      value: 
-      objectReference: {fileID: 1567357305}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daa7c958a3ab718428fc9e18f86ce8ac, type: 2}
   m_IsPrefabParent: 0
@@ -438,12 +428,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
---- !u!114 &1567357305 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114709666325954076, guid: 61ce08d198e317f4eb837322accfd261,
-    type: 2}
-  m_PrefabInternal: {fileID: 220602325}
-  m_Script: {fileID: 11500000, guid: b0a50432c43de594c8321f94941617d1, type: 3}
 --- !u!1001 &1657883916
 Prefab:
   m_ObjectHideFlags: 0
