@@ -51,12 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Atchive\WormSegment.cs" />
      <Compile Include="Assets\Scripts\Debug\Logger.cs" />
+     <Compile Include="Assets\Scripts\Debug\VisualizeNonStaticRadius.cs" />
      <Compile Include="Assets\Scripts\Game\BGSpawnBorder.cs" />
      <Compile Include="Assets\Scripts\Game\CameraController.cs" />
      <Compile Include="Assets\Scripts\Game\EnvironmentController.cs" />
      <Compile Include="Assets\Scripts\Game\GameData.cs" />
+     <Compile Include="Assets\Scripts\Game\NonStaticObstacle.cs" />
      <Compile Include="Assets\Scripts\Game\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Game\UI.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />

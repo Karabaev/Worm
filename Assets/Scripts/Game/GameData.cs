@@ -8,7 +8,7 @@ namespace Game
     [CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Object/Game data")]
     public class GameData : ScriptableObject
     {
-        public float GameSpeed = 0;
+        public float GameSpeed = 1;
         public int score = 0;
     }
 }

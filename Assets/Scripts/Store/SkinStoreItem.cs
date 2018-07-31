@@ -4,16 +4,9 @@ using UnityEngine;
 using System;
 namespace Game.Store
 {
+    [Serializable]
     public class SkinStoreItem : StoreItem
     {
-        public override void Disable()
-        {
 
-        }
-
-        public override void Enable()
-        {
-
-        }
     }
 }
